@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Graph Example</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Canvas to render the bar graph -->
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+        // Your PHP data array
+        var data = <?php echo json_encode($data[q][r]); ?>;
+
+        // Convert PHP array into separate arrays for labels and data values
+        var labels = Object.keys(data);
+        var values = Object.values(data);
+
+        // Bar graph configuration
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Bar Graph Example',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Adjust as needed
+                    borderColor: 'rgba(75, 192, 192, 1)',     // Adjust as needed
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
